@@ -1,0 +1,28 @@
+{
+  "name": "Kob",
+  "version": "0.0.1",
+  "description": "A simplified, visual, database-independant, migration tool.",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build:macos && npm run build:linux && npm run build:windows",
+    "build:macos": "electron-packager . --overwrite --asar --out=dist --ignore='^media$' --prune --platform=darwin --arch=x64 --icon=resources/kob.icns --app-bundle-id=com.cognophile.kob --app-version=$npm_package_version && cd dist/Kob-darwin-x64 && zip -ryXq9 ../Kob-macos-${npm_package_version}.zip Kob.app",
+    "build:linux": "electron-packager . --overwrite --out=dist --ignore='^media$' --prune --platform=linux --arch=x64 --icon=resources/kob.png --app-bundle-id=com.cognophile.kob --app-version=$npm_package_version && cd dist/Kob-linux-x64/ && zip -ryq9 ../Kob-linux-${npm_package_version}.zip *",
+    "build:windows": "electron-packager . --overwrite --asar --out=dist --ignore='^media$' --prune --platform=win32 --arch=ia32 --icon=resources/kob.ico --version-string.ProductName=$npm_package_productName --app-version=$npm_package_version && cd dist/Kob-win32-ia32 && zip -ryq9 ../Kob-windows-${npm_package_version}.zip *"
+  },
+  "repository": "https://github.com/cognophile/kob",
+  "keywords": [
+    "Electron",
+    "nodejs",
+    "database"
+  ],
+  "author": "cognophile",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^9.0.0",
+    "electron-packager": "^14.2.1"
+  },
+  "dependencies": {
+    "about-window": "^1.13.2"
+  }
+}

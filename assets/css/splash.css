@@ -1,0 +1,36 @@
+/* Tags */
+body {
+    width: 98.75vw;
+    height: 95vh;
+}
+body.busy .spinner { 
+    visibility: visible !important; 
+}
+
+/* Classes */
+.centre-container {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-wrapper {
+    width: 25%;
+    height: auto;
+    margin: auto;
+ }
+.image-wrapper img {
+    display: block;
+    max-width: 50%; 
+    max-height: auto;
+    margin: auto;
+ }
+ #splash_logotype {
+    padding-bottom: 5%;
+ }
+
+#spinner { 
+    visibility: hidden; 
+} 
+

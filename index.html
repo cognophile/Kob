@@ -5,18 +5,25 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    
+    <script src="./renderer.js"></script>
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <title>Kob</title>
   </head>
   <body>
-    <header>
-      <h1>Kob</h1>
-    </header>
-    
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div class="header bg-dark"></div>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-brand">
+        <img id="navbar-logo" src="resources/kob.png" class="d-inline-block" alt="Kob icon">
+      </div>
+    </nav>
 
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
   </body>
 </html>

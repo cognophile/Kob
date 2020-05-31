@@ -5,12 +5,13 @@ const filesystem = require('fs');
 const { app, BrowserWindow, Menu } = require('electron');
 const openAboutWindow = require('about-window').default;
 
-let window
+let splash
+let dashboard
 
 /**
  * Fetch the window template menu and shortcut bindings
  * 
- * @author Cognophile
+ * @author cognophile
  * @returns void
  */
 function getApplicationTemplateBindings() {
@@ -31,7 +32,7 @@ function getApplicationTemplateBindings() {
                         copyright: 'Copyright (c) cognophile 2020',
                         adjust_window_size: true,
                         win_options: {
-                            parent: window,
+                            parent: dashboard,
                             modal: true,
                         },
                         show_close_button: 'Close'
@@ -58,14 +59,9 @@ function getApplicationTemplateBindings() {
     ];
 }
 
-/**
- * Initialise the initial window
- * 
- * @author Cognophile
- * @returns void
- */
-function initialiseWindow() {
-    window = new BrowserWindow({
+function defaultWindow() {
+    return new BrowserWindow({
+        show: false,
         title: app.getName(),
         minWidth: 800,
         minHeight: 600,
@@ -81,27 +77,69 @@ function initialiseWindow() {
             preload: path.join(__dirname, 'preload.js')
         },
     });
+}
 
-    window.loadFile('index.html')
-
+function enableDarwinDraggable(window) {
     const document = window.webContents;
-    const appTemplate = getApplicationTemplateBindings()
-    Menu.setApplicationMenu(Menu.buildFromTemplate(appTemplate));
 
     document.on('dom-ready', () => {
         if (process.platform === 'darwin') {
-            document.insertCSS(filesystem.readFileSync(path.join(__dirname, 'assets/css/styles.css'), 'utf8'));
+            document.insertCSS(filesystem.readFileSync(path.join(__dirname, 'assets/css/darwin.css'), 'utf8'));
         }
-    });
-
-    window.on('closed', function () {
-        window = null
     });
 }
 
+/**
+ * Perform necessary application configuration
+ */
+function bootstrap() {
+    setTimeout(function () {
+        loadDashboard();
+    }, 2500);
+}
+
+/**
+ * Initialise the application 
+ * 
+ * @author cognophile
+ * @returns void
+ */
+function loadApp() {
+    splash = defaultWindow();
+    splash.loadURL(path.join('file://', __dirname, 'windows/splash.html'));
+    splash.on('closed', function () {
+        splash = null;
+    });
+
+    splash.on('ready-to-show', () => {
+        splash.show();
+        bootstrap();
+    });
+}
+
+/**
+ * Load the application dashboard
+ */
+function loadDashboard() {
+    const appTemplate = getApplicationTemplateBindings()
+    Menu.setApplicationMenu(Menu.buildFromTemplate(appTemplate));
+
+    dashboard = defaultWindow();
+    dashboard.loadURL(path.join('file://', __dirname, 'index.html'));
+    dashboard.on('closed', function () {
+        dashboard = null;
+    });
+
+    dashboard.on('ready-to-show', () => {
+        splash.destroy();
+        dashboard.show();
+    });
+
+    enableDarwinDraggable(dashboard);
+}
+
 app.on('ready', function () {
-    initialiseWindow();
-    window.show();
+    loadApp();
 })
 
 // Quit when all windows are closed.
@@ -112,7 +150,7 @@ app.on('window-all-closed', function () {
 })
 
 app.on('activate', function () {
-  if (window === null) {
-    initialiseWindow()
+  if (splash === null) {
+    loadApp()
   }
 })

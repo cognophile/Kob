@@ -1,0 +1,16 @@
+/* Tags */
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Classes */
+.header {
+    width: 100%;
+    height: 2vh;
+    display: block;
+}
+#navbar-logo{
+    width: 2em;
+    height: 2em;
+}

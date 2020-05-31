@@ -8,7 +8,7 @@
 ---
 [![Build Status](https://travis-ci.com/cognophile/Kob.svg?branch=master)](https://travis-ci.com/cognophile/Kob) 
 
-Kob is a simplified, visual, database-independant migration tool born from the frustration that many frameworks bake-in a language-specific migration tool, making development time quick but portability between ecosystems more painful.
+Kob is a simplified, visual, database-independent migration tool born from the frustration that many frameworks bake-in a language-specific migration tool, making development time quick but portability between ecosystems more painful.
 
 ## Getting started 👩‍💻👨‍💻
 To download the application, visit the [Releases](https://github.com/cognophile/Kob/releases) page and download the latest verison of the application suitable for your platform. If you're unsure which you need, check the list below.

@@ -1,7 +1,7 @@
 {
   "name": "Kob",
   "version": "0.0.1",
-  "description": "A simplified, visual, database-independant, migration tool.",
+  "description": "A simplified, visual, database-independent, migration tool.",
   "main": "app.js",
   "scripts": {
     "start": "electron .",

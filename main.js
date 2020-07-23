@@ -109,7 +109,7 @@ function loadDashboard() {
 
     dashboard = windowHelper.getBaseWindow('Dashboard');
     dashboard.loadURL(path.join('file://', __dirname, './index.html'));
-    dashboard.webContents.openDevTools()
+    // dashboard.webContents.openDevTools()
 
     dashboard.on('closed', function () {
         dashboard = null;

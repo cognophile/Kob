@@ -53,5 +53,5 @@ module.exports = {
                 document.insertCSS(filesystem.readFileSync(path.join(__dirname, '../../../../assets/css/darwin.css'), 'utf8'));
             }
         });
-    }
+    },
   };

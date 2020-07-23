@@ -2,7 +2,7 @@
   "name": "Kob",
   "version": "0.0.1",
   "description": "A simplified, visual, database-independent, migration tool.",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "npm run build:macos && npm run build:linux && npm run build:windows",
